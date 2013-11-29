@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<style>
+			.flying{
+				position : fixed;
+
+				border : 1px solid #000;
+				
+				text-align : center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="flying" style="width:400px;height:200px">
+			hi there
+		</div>
+
+		<div class="flying" style="left:400px;top:500px;">
+			flying object
+		</div>
+	</body>
+</html>
+
+<script>
+	flying = document.getElementsByClassName("flying");
+	
+	for( i=0;i<flying.length;i++ ){
+		var o = flying[i];
+
+		o.clicked = false;
+	
+		o.onmouseover = function(e){
+		};
+		o.onmouseout = function(e){
+			this.clicked = false;
+		};
+
+		o.onmousedown = function(e){
+			this.clicked = true;
+
+			this.cx = e.offsetX;
+			this.cy = e.offsetY;
+		};
+		o.onmouseup = function(e){
+			this.clicked = false;
+		};
+		o.onmousemove = function(e){
+			if( this.clicked == true ){
+				this.style.left = e.x - this.cx;
+				this.style.top = e.y - this.cy;
+			}
+		};
+	}
+</script>
